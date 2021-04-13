@@ -1,6 +1,6 @@
 <div class="card" *ngIf="!cargando">
     <div class="card-header">
-        <h4 class="text-center text-light">Administración de clientes</h4>
+        <h4 class="text-center text-light">Administración de Ordenes</h4>
     </div>
     <div class="card-body">
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -11,7 +11,7 @@
           </div>
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-outline-success" data-toggle="modal" data-target="#cliente" (click)="cargarForm()">Nueva Orden</button>
+                <button class="btn btn-outline-success" data-toggle="modal" data-target="#orden" (click)="cargarForm()">Nueva Orden</button>
             </div>
         </div>
         <table class="table table-striped mt-3">
@@ -24,7 +24,7 @@
                 <th>Fecha</th>
             </thead>
             <tbody> 
-                <tr class="elemento" *ngFor="let o of ordenes" (click)="cargar(o.id)" data-toggle="modal" data-target="#cliente">
+                <tr class="elemento" *ngFor="let o of ordenes" (click)="cargar(o.id)" data-toggle="modal" data-target="#orden">
                     <td>{{o.id}}</td>
                     <td>{{o.cliente}}</td>
                     <td>{{o.producto}}</td>
@@ -41,7 +41,7 @@
     <h1>Cargando</h1>
 </div>
 
-<div class="modal fade" id="cliente" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="orden" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -56,6 +56,7 @@
                 <ul>
                     <li>Los campos con <b>*</b> son obligatorios</li>
                     <li>Los campos <b>cantidad, total</b> son campos numericos</li>
+                    <li>Al no cumplir las validaciones no se podra guardar la nueva</li>
                 </ul>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

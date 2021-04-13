@@ -33,6 +33,14 @@
       "cantidad": 6,
       "total": 15,
       "fecha": "2021-04-13"
+    },
+    {
+      "id": "1",
+      "idCliente": "4",
+      "idProducto": "1",
+      "cantidad": 10,
+      "total": 25,
+      "fecha": "2021-04-13"
     }
   ],
   "productos": [
