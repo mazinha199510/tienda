@@ -1,0 +1,49 @@
+{
+  "clientes": [
+    {
+      "id": "4",
+      "nombre": "Jose",
+      "apellidos": "Enrique",
+      "telefono": "12345678",
+      "correo": "correo@gmail.com",
+      "nit": "12345678901234"
+    },
+    {
+      "id": "1",
+      "nombre": "Josue",
+      "apellidos": "Aguilera",
+      "telefono": "12345678",
+      "correo": "nuevo@hotmail.com",
+      "nit": "12345678901234"
+    }
+  ],
+  "ordenes": [
+    {
+      "idOrden": 1,
+      "idProducto": 1,
+      "idCliente": 1,
+      "cantidad": 1,
+      "fecha": "19-06-2020"
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Soda 2.5L Coca Cola",
+      "descripcion": "Soda de 2.5 litros",
+      "precio": 2.5
+    },
+    {
+      "id": "2",
+      "nombre": "Soda lata Pepsi",
+      "descripcion": "Soda pepsi de lata",
+      "precio": "0.75"
+    },
+    {
+      "id": "3",
+      "nombre": "Boquitas Diana Nachos 1400ml",
+      "descripcion": "Churro de la marca diana grande",
+      "precio": "1.45"
+    }
+  ]
+}

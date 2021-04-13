@@ -1,0 +1,93 @@
+<div class="card" *ngIf="!cargando">
+    <div class="card-header">
+        <h4 class="text-center text-light">Administración de productos</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <b>Indicaciones: </b> Para poder modificar o eliminar un producto de click en la fila deseada.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-outline-success" data-toggle="modal" data-target="#prod" (click)="cargarForm()">Nuevo Producto</button>
+            </div>
+        </div>
+        <table class="table table-striped mt-3">
+            <thead class="thead-dark">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>precio</th>
+            </thead>
+            <tbody> 
+                <tr class="elemento" *ngFor="let p of productos" (click)="cargar(p.id)" data-toggle="modal" data-target="#prod">
+                    <td>{{p.id}}</td>
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.descripcion}}</td>
+                    <td>${{p.precio | number: '1.2-2'}}</td>
+                </tr>    
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-center" *ngIf="cargando">
+    <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+    <h1>Cargando</h1>
+</div>
+
+<div class="modal fade" id="prod" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-light" id="staticBackdropLabel">{{(save)? 'Agregar Producto' : 'Modificar Producto'}}</h5>
+          <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>Indicaciones: </strong> 
+                <ul>
+                    <li>Los campos con <b>*</b> son obligatorios</li>
+                    <li>El campo <b>id</b> es solo numericos</li>
+                    <li>El campo <b>Precio</b> es numerico decimal</li>
+                    <li>Al no cumplir las validaciones no se podra guardar el nuevo producto</li>
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <form [formGroup]="producto">
+                <div class="form-group">
+                    <label>ID:<b class="text-danger">*</b></label>
+                    <input type="text" class="form-control" formControlName="id" [readonly]="!save">
+                </div>
+                <div class="form-group">
+                    <label>Nombre:<b class="text-danger">*</b></label>
+                    <input type="text" class="form-control" formControlName="nombre">
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <textarea type="text" class="form-control" formControlName="descripcion"></textarea>
+                </div>                
+                <div class="form-group">
+                    <label>Precio:<b class="text-danger">*</b></label>
+                    <input type="text" class="form-control" formControlName="precio">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer" *ngIf="save">
+            <button type="button" class="btn btn-outline-success" (click)="guardar()" [ngClass]="{'disabled': producto.invalid}">Agregar</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>          
+        </div>
+        <div class="modal-footer" *ngIf="!save">
+            <button type="button" class="btn btn-outline-warning" (click)="modificar()" [ngClass]="{'disabled': producto.invalid}" data-dismiss="modal">Modificar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="eliminar()" data-dismiss="modal">Eliminar</button>
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>          
+        </div>
+      </div>
+    </div>
+  </div>

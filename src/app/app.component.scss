@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+}
+
+.container-fluid{
+    margin: 0 ;
+    padding: 0 !important;
+    .navbar{
+        .nav-item{
+            .nav-link:hover{
+                cursor: pointer;
+            }
+        }
+    }    
+}
