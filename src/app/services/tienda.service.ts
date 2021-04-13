@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Cliente, Producto } from '../interfaces/interface';
+import { Cliente, Orden, Producto } from '../interfaces/interface';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,52 @@ export class TiendaService {
       "precio": producto.value.precio
     };
     return this.http.put<Producto>(`${environment.baseUrl}productos/${producto.value.id}`, params);
+  }
+
+  //Ordenes
+  getOrdenes(){
+    return this.http.get<Orden[]>(`${environment.baseUrl}ordenes`).pipe(map(res => {
+      for(let i = 0; i < res.length; i++){
+        this.findCliente(res[i].idCliente).subscribe(cliente => {
+          res[i].cliente = cliente.nombre + ' ' + cliente.apellidos;
+        });
+        this.findProducto(res[i].idProducto).subscribe(producto => {
+          res[i].producto = producto.nombre;
+        });
+      }  
+      return res;    
+    }));
+  }
+
+  saveOrden(producto){
+    const params = {
+      "id": producto.value.id,
+      "idCliente": producto.value.idCliente,
+      "idProducto": producto.value.idProducto,
+      "cantidad": producto.value.cantidad,
+      "total": producto.value.total,
+      "fecha":producto.value.fecha
+    };
+    return this.http.post<Orden>(`${environment.baseUrl}ordenes`, params);
+  }
+
+  findOrden(producto){
+    return this.http.get<Orden>(`${environment.baseUrl}ordenes/${producto}`);
+  }
+
+  deleteOrden(producto){
+    return this.http.delete<any>(`${environment.baseUrl}ordenes/${producto}`);
+  }
+
+  modifyOrden(producto){
+    const params = {
+      "id": producto.value.id,
+      "idCliente": producto.value.idCliente,
+      "idProducto": producto.value.idProducto,
+      "cantidad": producto.value.cantidad,
+      "total": producto.value.total,
+      "fecha":producto.value.fecha
+    };
+    return this.http.put<Orden>(`${environment.baseUrl}ordenes/${producto.value.id}`, params);
   }
 }

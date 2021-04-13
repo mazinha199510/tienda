@@ -19,11 +19,20 @@
   ],
   "ordenes": [
     {
-      "idOrden": 1,
-      "idProducto": 1,
-      "idCliente": 1,
-      "cantidad": 1,
-      "fecha": "19-06-2020"
+      "id": "3",
+      "idCliente": "4",
+      "idProducto": "2",
+      "cantidad": 3,
+      "total": 2.25,
+      "fecha": "2021-04-12"
+    },
+    {
+      "id": "2",
+      "idCliente": "1",
+      "idProducto": "1",
+      "cantidad": 6,
+      "total": 15,
+      "fecha": "2021-04-13"
     }
   ],
   "productos": [

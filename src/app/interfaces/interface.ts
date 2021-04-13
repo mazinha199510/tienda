@@ -13,3 +13,14 @@ export interface Producto{
     descripcion: string,
     precio: number
 }
+
+export interface Orden{
+    id: number,
+    idCliente: number,
+    cliente: string,
+    idProducto: number,
+    producto: string,
+    cantidad: number,
+    total: number,
+    fecha: string
+}

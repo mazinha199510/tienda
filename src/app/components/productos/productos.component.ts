@@ -32,7 +32,6 @@ export class ProductosComponent implements OnInit {
         this.save = true;
         const reg = '^[0-9]+$';
         const Decreg = '^[0-9.]+$';
-        const emailReg = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
         this.producto = this.fb.group({
           "id": ["", [Validators.required, Validators.pattern(reg)]],
           "nombre": ["", Validators.required],
